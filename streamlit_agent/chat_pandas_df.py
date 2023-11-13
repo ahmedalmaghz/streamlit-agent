@@ -76,7 +76,9 @@ if prompt := st.chat_input(placeholder="What is this data about?"):
         openai_api_version="2023-05-15",
         azure_deployment="gpt-35-turbo",
         temperature=0,
-        # model="gpt-3.5-turbo-0613", openai_api_key=openai_api_key,
+        # model="gpt-3.5-turbo-0613",
+        openai_api_key=openai_api_key,
+        azure_endpoint="https://hisabcloud.openai.azure.com",
         streaming=True
     )
 
