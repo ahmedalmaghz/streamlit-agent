@@ -59,7 +59,7 @@ if not uploaded_file:
 if uploaded_file:
     df = load_data(uploaded_file)
 
-openai_api_key = st.sidebar.text_input("OpenAI API Key", type="password")
+# openai_api_key = st.sidebar.text_input("OpenAI API Key", type="password")
 if "messages" not in st.session_state or st.sidebar.button("Clear conversation history"):
     st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
 
@@ -77,8 +77,8 @@ if prompt := st.chat_input(placeholder="What is this data about?"):
     llm = AzureChatOpenAI(
         openai_api_version="2023-06-19",
         azure_deployment="HCloudChat",
-        temperature=0,
-        model="gpt-3.5-turbo-0613",
+        # temperature=0,
+        # model="gpt-3.5-turbo",
         # azure_openai_api_key="9697d9f434e149eebf6fbd45f0061240",
         # azure_openai_api_endpoint="https://hisabcloud.openai.azure.com",
         # streaming=True
