@@ -14,11 +14,6 @@ file_formats = {
     "xlsb": pd.read_excel,
 }
 
-os.environ["OPENAI_API_TYPE"] = "azure"
-os.environ["AZURE_OPENAI_API_KEY"] = "9697d9f434e149eebf6fbd45f0061240"
-os.environ["AZURE_OPENAI_API_ENDPOINT"] = "https://hisabcloud.openai.azure.com/"
-os.environ["OPENAI_API_VERSION"] = "2023-06-19"
-
 def clear_submit():
     """
     Clear the Submit Button State
@@ -79,8 +74,6 @@ if prompt := st.chat_input(placeholder="What is this data about?"):
         azure_deployment="HCloudChat",
         # temperature=0,
         # model="gpt-3.5-turbo",
-        # azure_openai_api_key="9697d9f434e149eebf6fbd45f0061240",
-        # azure_openai_api_endpoint="https://hisabcloud.openai.azure.com",
         # streaming=True
     )
 
