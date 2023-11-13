@@ -73,13 +73,13 @@ if prompt := st.chat_input(placeholder="What is this data about?"):
     #     st.stop()
 
     llm = AzureChatOpenAI(
-        openai_api_version="2023-05-15",
-        azure_deployment="gpt-35-turbo",
+        openai_api_version="2023-06-19",
+        azure_deployment="HCloudChat",
         temperature=0,
         # model="gpt-3.5-turbo-0613",
-        openai_api_key=openai_api_key,
-        azure_endpoint="https://hisabcloud.openai.azure.com",
-        streaming=True
+        azure_openai_api_key="9697d9f434e149eebf6fbd45f0061240",
+        azure_openai_api_endpoint="https://hisabcloud.openai.azure.com",
+        # streaming=True
     )
 
     pandas_df_agent = create_pandas_dataframe_agent(
