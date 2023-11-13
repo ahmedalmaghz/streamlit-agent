@@ -1,7 +1,7 @@
 from langchain.agents import AgentType
 from langchain.agents import create_pandas_dataframe_agent
 from langchain.callbacks import StreamlitCallbackHandler
-from langchain.chat_models import ChatOpenAI
+from langchain.chat_models import AzureChatOpenAI
 import streamlit as st
 import pandas as pd
 import os
@@ -14,6 +14,8 @@ file_formats = {
     "xlsb": pd.read_excel,
 }
 
+os.environ["AZURE_OPENAI_API_KEY"] = "9697d9f434e149eebf6fbd45f0061240"
+os.environ["AZURE_OPENAI_ENDPOINT"] = "https://hisabcloud.openai.azure.com/"
 
 def clear_submit():
     """
@@ -66,12 +68,16 @@ if prompt := st.chat_input(placeholder="What is this data about?"):
     st.session_state.messages.append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)
 
-    if not openai_api_key:
-        st.info("Please add your OpenAI API key to continue.")
-        st.stop()
+    # if not openai_api_key:
+    #     st.info("Please add your OpenAI API key to continue.")
+    #     st.stop()
 
-    llm = ChatOpenAI(
-        temperature=0, model="gpt-3.5-turbo-0613", openai_api_key=openai_api_key, streaming=True
+    llm = AzureChatOpenAI(
+        openai_api_version="2023-05-15",
+        azure_deployment="gpt-35-turbo",
+        temperature=0,
+        # model="gpt-3.5-turbo-0613", openai_api_key=openai_api_key,
+        streaming=True
     )
 
     pandas_df_agent = create_pandas_dataframe_agent(
